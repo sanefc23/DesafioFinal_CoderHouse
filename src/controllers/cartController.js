@@ -93,32 +93,33 @@ const cartController = {
                     })
             })
     },
-    checkout: (req, res) => {
+    checkout: async (req, res) => {
         const cart = JSON.parse(req.cookies.userCart);
-        UsersAPI.getByEmail(cart.user)
-            .then(async userData => {
-                const emailMessage = {
-                    from: {
-                        name: config.ETHEREAL_NAME,
-                        address: config.ETHEREAL_EMAIL
-                    },
-                    to: config.ETHEREAL_EMAIL,
-                    subject: `Recibimos tu orden #${cart._id}`,
-                    html: `
-                        <h1>Hola ${userData.name}! Recibimos correctamente tu orden #${cart._id}.</h1>
-                        <p>Lo vas a estar recibiendo en tu domicilio ${userData.adress}.\nProductos:\n${cart.products.map(p => `${p.id_prod} x ${p.units}\n`)}</p>
-                        `,
-                }
-                await sendEmail(emailMessage)
-                res.status(200).json({
-                    // whatsapp: content,
-                    email: emailMessage
-                })
-            })
-            .catch(e => {
-                logger.error(e)
-                res.status(500).json(e)
-            });
+        try {
+            const userData = await UsersAPI.getByEmail(cart.user)
+
+            userData ? userData : res.status(500).json('You need to log in first!')
+
+            const emailMessage = {
+                from: {
+                    name: config.ETHEREAL_NAME,
+                    address: config.ETHEREAL_EMAIL
+                },
+                to: config.ETHEREAL_EMAIL,
+                subject: `Recibimos tu orden #${cart._id}`,
+                html: `
+                            <h1>Hola ${userData.name}! Recibimos correctamente tu orden #${cart._id}.</h1>
+                            <p>Lo vas a estar recibiendo en tu domicilio ${userData.adress}.\nProductos:\n${cart.products.map(p => `${p.id_prod} x ${p.units}\n`)}</p>
+                            `,
+            }
+
+            await sendEmail(emailMessage)
+
+            res.status(200).json(emailMessage)
+        } catch (error) {
+            logger.error(error)
+            res.status(500).json(error)
+        }
     }
 }
 
