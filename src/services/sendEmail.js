@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer');
 const config = require('../config/config');
+const logger = require('./logger');
 
 async function sendEmail(emailMessage) {
     const transporter = nodemailer.createTransport({
@@ -10,19 +11,17 @@ async function sendEmail(emailMessage) {
             pass: config.ETHEREAL_PASSWORD
         }
     });
-
     try {
         const response = await transporter.sendMail(emailMessage, (err, info) => {
             if (err) {
-                console.log('Error occurred. ' + err.message);
+                logger.error('Error occurred. ' + err.message);
                 return process.exit(1);
             }
         });
         return response;
         next();
-
     } catch (err) {
-        console.log('ERROR', err);
+        logger.error('ERROR', err);
         res.status(500).json(err);
     }
 }
