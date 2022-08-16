@@ -1,5 +1,6 @@
 const sendEmail = require('../services/sendEmail');
 const config = require('../config/config');
+const logger = require('../services/logger');
 
 const sendRegisterEmail = async (req, res, next) => {
     const user = req.session.passport ? req.session.passport.user : 'Usuario'
@@ -21,7 +22,7 @@ const sendRegisterEmail = async (req, res, next) => {
         next();
 
     } catch (err) {
-        console.log('ERROR', err);
+        logger.error('ERROR', err);
         res.status(500).json(err);
     }
 };

@@ -115,11 +115,11 @@ const cartController = {
                 }
 
                 const response = await sendWPMessage(userData.phone, content)
-                const email = await sendEmail(emailMessage)
+                //const email = await sendEmail(emailMessage)
 
                 res.json({
                     response,
-                    email
+                    // email
                 })
             })
             .catch(e => logger.error(e));
