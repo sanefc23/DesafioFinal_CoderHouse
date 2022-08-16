@@ -113,14 +113,22 @@ const cartController = {
                         <p>Lo vas a estar recibiendo en tu domicilio ${userData.adress}.\nProductos:\n${cart.products.map(p => `${p.id_prod} x ${p.units}\n`)}</p>
                         `,
                 }
-
-                const response = await sendWPMessage(userData.phone, content)
-                //const email = await sendEmail(emailMessage)
-
-                res.json({
-                    response,
-                    // email
-                })
+                try {
+                    //const response = await sendWPMessage(userData.phone, content)
+                    const email = await sendEmail(emailMessage)
+                    if (response && email) {
+                        res.json({
+                            response,
+                            email
+                        })
+                    } else {
+                        logger.error('Failed to process checkout email or Whatsapp')
+                        res.status(500)
+                    }
+                } catch (error) {
+                    logger.error('Failed to process checkout email or Whatsapp: ', error)
+                    res.status(500).json(error)
+                }
             })
             .catch(e => logger.error(e));
     }
