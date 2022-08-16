@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 const app = express();
 const mainRouter = require('../routers/mainRouter');
 const config = require('../config/config');
-const PORT = process.env.PORT || 8080;
+const PORT = config.PORT || 8080;
 const server = require("http").Server(app);
 const MongoStore = require("connect-mongo")
 const passport = require('passport');
@@ -58,7 +58,7 @@ const sessionOptions = {
     resave: true,
     saveUninitialized: true,
     cookie: {
-        expires: 60 * 100000
+        expires: config.EXPIRATION
     }
 }
 

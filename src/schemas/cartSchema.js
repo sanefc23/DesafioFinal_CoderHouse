@@ -10,7 +10,8 @@ const cartSchema = new Schema({
         id_prod: String,
         units: Number
     }, ],
-    user: String
+    email: String,
+    adress: String
 });
 
 class Carts {

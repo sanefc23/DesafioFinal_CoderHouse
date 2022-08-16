@@ -8,18 +8,20 @@ const config = require('../config/config');
 const logger = require('../services/logger');
 
 const cartController = {
-    create: (req, res) => {
+    create: async (req, res) => {
+        const user = await UsersAPI.getByEmail(req.session.passport.user)
         let cart = new Cart();
         cart = {
             ...cart,
-            ...req.session.passport
+            email: user.email,
+            adress: user.adress
         }
         cart.products.push(...req.body);
         CartAPI.create(cart)
             .then(created => {
                 logger.info('Creado carrido: ', cart)
                 res.cookie('userCart', JSON.stringify(created), {
-                    maxAge: 60 * 100000
+                    maxAge: config.EXPIRATION
                 });
                 res.json({
                     cart_id: created.id

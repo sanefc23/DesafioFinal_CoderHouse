@@ -17,6 +17,7 @@ const productSchema = new Schema({
 	image: String,
 	price: Number,
 	stock: Number,
+	category: String,
 	timestamp: Date,
 });
 
@@ -40,7 +41,6 @@ class Products {
 	async getById(id) {
 		try {
 			const response = await this.products.findById(id).lean();
-			console.log(response);
 			return response
 		} catch (e) {
 			logger.error(e.message)
@@ -59,7 +59,6 @@ class Products {
 	async updateProduct(id, product) {
 		try {
 			const response = await this.products.findByIdAndUpdate(id, product);
-			console.log(reponse);
 			logger.info('producto actualizado: ', product);
 			return response;
 		} catch (e) {
