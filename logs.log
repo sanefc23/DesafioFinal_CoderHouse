@@ -13,3 +13,23 @@
 }
 [2022-08-15T22:58:16.744] [INFO] file1 - User logged: test31@mail.com
 [2022-08-15T22:58:33.800] [INFO] file1 - User logged: test31@mail.com
+[2022-08-15T23:01:51.365] [INFO] file1 - Creado carrido:  {
+  timestamp: 1660615311159,
+  products: [
+    { id_prod: '627af838b435aeac85e48397', units: 2 },
+    { id_prod: '627af7f6b435aeac85e48396', units: 3 }
+  ],
+  email: 'test31@mail.com',
+  adress: 'Acuña de Figueroa 1511'
+}
+[2022-08-15T23:02:01.825] [INFO] file1 - [object Object] logged out.
+[2022-08-15T23:10:04.664] [INFO] file1 - User logged: test31@mail.com
+[2022-08-15T23:10:20.820] [INFO] file1 - Creado carrido:  {
+  timestamp: 1660615820626,
+  products: [
+    { id_prod: '627af838b435aeac85e48397', units: 2 },
+    { id_prod: '627af7f6b435aeac85e48396', units: 3 }
+  ],
+  email: 'test31@mail.com',
+  adress: 'Acuña de Figueroa 1511'
+}

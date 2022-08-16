@@ -9,26 +9,31 @@ const logger = require('../services/logger');
 
 const cartController = {
     create: async (req, res) => {
-        const user = await UsersAPI.getByEmail(req.session.passport.user)
-        let cart = new Cart();
-        cart = {
-            ...cart,
-            email: user.email,
-            adress: user.adress
-        }
-        cart.products.push(...req.body);
-        CartAPI.create(cart)
-            .then(created => {
-                logger.info('Creado carrido: ', cart)
-                res.cookie('userCart', JSON.stringify(created), {
-                    maxAge: config.EXPIRATION
+        if (req.session.passport != undefined) {
+            const user = await UsersAPI.getByEmail(req.session.passport.user)
+            let cart = new Cart();
+            cart = {
+                ...cart,
+                email: user.email,
+                adress: user.adress
+            }
+            cart.products.push(...req.body);
+            CartAPI.create(cart)
+                .then(created => {
+                    logger.info('Creado carrido: ', cart)
+                    res.cookie('userCart', JSON.stringify(created), {
+                        maxAge: config.EXPIRATION
+                    });
+                    res.status(200).json(created);
+                })
+                .catch(e => {
+                    logger.error(e);
+                    res.json(e);
                 });
-                res.json(created);
-            })
-            .catch(e => {
-                logger.error(e);
-                res.json(e);
-            });
+        } else {
+            res.status(400).json('Please log in first!')
+        }
+
     },
     delete: (req, res) => {
         let id = req.params.id;
@@ -112,7 +117,7 @@ const cartController = {
 
                 const response = await sendWPMessage(userData.phone, content)
                 const email = await sendEmail(emailMessage)
-                
+
                 res.json({
                     response,
                     email
