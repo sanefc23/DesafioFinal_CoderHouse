@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 const logger = require('../services/logger');
 const MongoDBClient = require('../services/dbMongo');
-const {
-	LogContext
-} = require("twilio/lib/rest/serverless/v1/service/environment/log");
 const Schema = mongoose.Schema;
 const productsCollection = 'products';
 
