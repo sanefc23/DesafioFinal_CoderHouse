@@ -1,8 +1,6 @@
 const Cart = require('../models/Cart');
 const CartAPI = require('../APIs/cartsAPI')
 const UsersAPI = require('../APIs/usersAPI');
-const userSchema = require('../schemas/userSchema');
-const sendWPMessage = require('../services/twilio');
 const sendEmail = require('../services/sendEmail');
 const config = require('../config/config');
 const logger = require('../services/logger');
@@ -113,19 +111,8 @@ const cartController = {
                         `,
                 }
                 try {
-                    const response = await sendWPMessage(userData.phone, content)
-                    const email = await sendEmail(emailMessage)
-                    console.log('response: ', response);
-                    console.log('email: ', email);
-                    if (response && email) {
-                        res.json({
-                            response,
-                            email
-                        })
-                    } else {
-                        logger.error('Failed to process checkout email or Whatsapp')
-                        res.status(500)
-                    }
+                    await sendEmail(emailMessage)
+                    res.status(200).json(emailMessage)
                 } catch (error) {
                     logger.error('Failed to process checkout email or Whatsapp: ', error)
                     res.status(500).json(error)
