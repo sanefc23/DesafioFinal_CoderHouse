@@ -23,9 +23,7 @@ const cartController = {
                 res.cookie('userCart', JSON.stringify(created), {
                     maxAge: config.EXPIRATION
                 });
-                res.json({
-                    cart_id: created.id
-                });
+                res.json(created);
             })
             .catch(e => {
                 logger.error(e);
