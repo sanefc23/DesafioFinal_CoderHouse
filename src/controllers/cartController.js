@@ -33,7 +33,6 @@ const cartController = {
         } else {
             res.status(400).json('Please log in first!')
         }
-
     },
     delete: (req, res) => {
         let id = req.params.id;
