@@ -97,9 +97,6 @@ const cartController = {
         const cart = JSON.parse(req.cookies.userCart);
         try {
             const userData = await UsersAPI.getByEmail(cart.user)
-
-            userData ? userData : res.status(500).json('You need to log in first!')
-
             const emailMessage = {
                 from: {
                     name: config.ETHEREAL_NAME,
