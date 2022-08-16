@@ -3,8 +3,7 @@ const config = require('../config/config');
 
 async function sendEmail(emailMessage) {
     const transporter = nodemailer.createTransport({
-        // host: 'smtp.ethereal.email',
-        host: 'smtppro.zoho.in',
+        host: 'smtp.ethereal.email',
         port: 587,
         auth: {
             user: config.ETHEREAL_EMAIL,
