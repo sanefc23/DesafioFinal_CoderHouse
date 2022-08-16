@@ -13,5 +13,4 @@ async function sendWPMessage(cellphoneNumber, message) {
     return response;
 }
 
-
 module.exports = sendWPMessage;

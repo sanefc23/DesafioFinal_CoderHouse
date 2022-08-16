@@ -19,10 +19,8 @@ async function sendEmail(emailMessage) {
             }
         });
         return response;
-        next();
     } catch (err) {
         logger.error('ERROR', err);
-        res.status(500).json(err);
     }
 }
 

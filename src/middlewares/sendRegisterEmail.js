@@ -20,7 +20,6 @@ const sendRegisterEmail = async (req, res, next) => {
     try {
         await sendEmail(emailMessage);
         next();
-
     } catch (err) {
         logger.error('ERROR', err);
         res.status(500).json(err);

@@ -97,7 +97,6 @@ const cartController = {
     },
     checkout: (req, res) => {
         const cart = JSON.parse(req.cookies.userCart);
-        console.log(cart);
         UsersAPI.getByEmail(cart.user)
             .then(async userData => {
                 const content = `Hola ${userData.name}! Recibimos correctamente tu orden #${cart._id}.\nLo vas a estar recibiendo en tu domicilio ${userData.adress}.\nProductos:\n${cart.products.map(p => `${p.id_prod} x ${p.units}\n`)}`;
@@ -114,8 +113,10 @@ const cartController = {
                         `,
                 }
                 try {
-                    //const response = await sendWPMessage(userData.phone, content)
+                    const response = await sendWPMessage(userData.phone, content)
                     const email = await sendEmail(emailMessage)
+                    console.log('response: ', response);
+                    console.log('email: ', email);
                     if (response && email) {
                         res.json({
                             response,
