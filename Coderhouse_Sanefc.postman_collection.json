@@ -1,0 +1,449 @@
+{
+	"info": {
+		"_postman_id": "07f46206-7c51-406d-86c6-f276818ab458",
+		"name": "Coderhouse_Sanefc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10583888"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "Listar Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar 1 Producto",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/products/627af843b435aeac85e48398",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"627af843b435aeac85e48398"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " {\r\n     \"name\": \"Pokemon Legends Arceus\",\r\n        \"description\": \"Pokémon Legends: Arceus es un videojuego de la octava generación. La aventura se realiza en la región de Hisui. Fue lanzado el 28 de enero de 2022 para Nintendo Switch.\",\r\n        \"code\": \"MKD008\",\r\n        \"image\": \"https://static.wikia.nocookie.net/espokemon/images/0/0b/Car%C3%A1tula_de_Leyendas_Pok%C3%A9mon-_Arceus.png/revision/latest/scale-to-width-down/303?cb=20211022140956\",\r\n        \"price\": 12345,\r\n        \"stock\": 8\r\n        }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/62e73274ab99b486cd63facd",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"62e73274ab99b486cd63facd"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Pokemon Scarlet\",\r\n    \"description\": \"Leyendas Pokémon: Arceus (Pokémon Legends: Arceus en inglés, アルセウス en japonés) es un videojuego de la octava generación. La aventura se realiza en la región de Hisui. Fue lanzado el 28 de enero de 2022 para Nintendo Switch.\",\r\n    \"code\": \"MKD008\",\r\n    \"image\": \"https://static.wikia.nocookie.net/espokemon/images/0/0b/Car%C3%A1tula_de_Leyendas_Pok%C3%A9mon-_Arceus.png/revision/latest/scale-to-width-down/303?cb=20211022140956\",\r\n    \"price\": 15900,\r\n    \"stock\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/products/62e73bda4857774b4e16b97e",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"62e73bda4857774b4e16b97e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cart",
+			"item": [
+				{
+					"name": "Nuevo Carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[{           \"id_prod\": \"627af838b435aeac85e48397\",\r\n            \"units\": 2\r\n},\r\n{           \"id_prod\": \"627af7f6b435aeac85e48396\",\r\n            \"units\": 3\r\n}]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar Carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart/62e73bfb4857774b4e16b983",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"62e73bfb4857774b4e16b983"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Productos en Carrito",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart/62e73bfb4857774b4e16b983/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"62e73bfb4857774b4e16b983",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Agregar Producto a Carrito",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id_prod\":\"627af7f6b435aeac85e48396\",\r\n    \"units\": 8\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/cart/62e73bfb4857774b4e16b983/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"62e73bfb4857774b4e16b983",
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto en Carrito",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cart/62e73bfb4857774b4e16b983/products/627af838b435aeac85e48397",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"62e73bfb4857774b4e16b983",
+								"products",
+								"627af838b435aeac85e48397"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Checkout",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/cart/checkout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"cart",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test26@mail.com\",\r\n    \"password\": \"123asd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "test29@mail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123asd",
+									"type": "text"
+								},
+								{
+									"key": "passwordCheck",
+									"value": "123asd",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Santiago Fernandez",
+									"type": "text"
+								},
+								{
+									"key": "adress",
+									"value": "Acuña de Figueroa 1511",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "30",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "+5491132564823",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/sanef/Desktop/IMG_20220606_140621_941.jpg"
+								},
+								{
+									"key": "isAdmin",
+									"value": "true",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{baseUrl}}/user/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify Session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/user/session",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"user",
+								"session"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://sanefc-backend-coderhouse.herokuapp.com/api",
+			"type": "string"
+		},
+		{
+			"key": "localUrl",
+			"value": "http://localhost:8080",
+			"type": "string"
+		}
+	]
+}
